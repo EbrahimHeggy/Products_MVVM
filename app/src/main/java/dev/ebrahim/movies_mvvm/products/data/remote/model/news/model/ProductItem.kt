@@ -1,4 +1,4 @@
-package dev.ebrahim.movies_mvvm.Products.data.remote.model.news.model
+package dev.ebrahim.movies_mvvm.products.data.remote.model.news.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

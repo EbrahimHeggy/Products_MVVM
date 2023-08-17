@@ -1,6 +1,6 @@
-package dev.ebrahim.movies_mvvm.Products.data.remote
+package dev.ebrahim.movies_mvvm.products.data.remote
 
-import dev.ebrahim.movies_mvvm.Products.data.remote.api.ProductsApi
+import dev.ebrahim.movies_mvvm.products.data.remote.api.ProductsApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

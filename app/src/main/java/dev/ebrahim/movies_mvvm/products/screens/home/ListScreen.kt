@@ -1,4 +1,4 @@
-package dev.ebrahim.movies_mvvm.Products.screens.home
+package dev.ebrahim.movies_mvvm.products.screens.home
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,9 +11,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
-import dev.ebrahim.movies_mvvm.Products.screens.composable.ErrorDialog
-import dev.ebrahim.movies_mvvm.Products.screens.composable.ListProducts
-import dev.ebrahim.movies_mvvm.Products.screens.composable.LoadingScreen
+import dev.ebrahim.movies_mvvm.products.screens.composable.ErrorDialog
+import dev.ebrahim.movies_mvvm.products.screens.composable.ListProducts
+import dev.ebrahim.movies_mvvm.products.screens.composable.LoadingScreen
 
 
 @OptIn(ExperimentalMaterial3Api::class)

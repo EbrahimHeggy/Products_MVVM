@@ -1,6 +1,6 @@
-package dev.ebrahim.movies_mvvm.Products.data.remote.api
+package dev.ebrahim.movies_mvvm.products.data.remote.api
 
-import dev.ebrahim.movies_mvvm.Products.data.remote.model.news.model.ProductItem
+import dev.ebrahim.movies_mvvm.products.data.remote.model.news.model.ProductItem
 import retrofit2.http.GET
 
 interface ProductsApi {

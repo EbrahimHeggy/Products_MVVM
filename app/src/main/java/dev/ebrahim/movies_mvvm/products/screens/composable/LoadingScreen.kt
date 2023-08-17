@@ -1,4 +1,4 @@
-package dev.ebrahim.movies_mvvm.Products.screens.composable
+package dev.ebrahim.movies_mvvm.products.screens.composable
 
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.runtime.Composable

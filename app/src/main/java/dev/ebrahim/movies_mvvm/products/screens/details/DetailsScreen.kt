@@ -1,4 +1,4 @@
-package dev.ebrahim.movies_mvvm.Products.screens.details
+package dev.ebrahim.movies_mvvm.products.screens.details
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

@@ -1,10 +1,10 @@
-package dev.ebrahim.movies_mvvm.Products.screens.home
+package dev.ebrahim.movies_mvvm.products.screens.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dev.ebrahim.movies_mvvm.Products.data.ProductRepository
-import dev.ebrahim.movies_mvvm.Products.data.remote.model.news.model.ProductItem
+import dev.ebrahim.movies_mvvm.products.data.ProductRepository
+import dev.ebrahim.movies_mvvm.products.data.remote.model.news.model.ProductItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

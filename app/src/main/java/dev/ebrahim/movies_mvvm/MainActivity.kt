@@ -13,9 +13,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import dev.ebrahim.movies_mvvm.Products.screens.details.DetailsScreen
-import dev.ebrahim.movies_mvvm.Products.screens.home.ListScreen
-import dev.ebrahim.movies_mvvm.Products.screens.home.ListViewModel
+import dev.ebrahim.movies_mvvm.products.screens.details.DetailsScreen
+import dev.ebrahim.movies_mvvm.products.screens.home.ListScreen
+import dev.ebrahim.movies_mvvm.products.screens.home.ListViewModel
 import dev.ebrahim.movies_mvvm.ui.theme.Movies_MVVMTheme
 
 class MainActivity : ComponentActivity() {

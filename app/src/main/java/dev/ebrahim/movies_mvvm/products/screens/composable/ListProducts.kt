@@ -1,4 +1,4 @@
-package dev.ebrahim.movies_mvvm.Products.screens.composable
+package dev.ebrahim.movies_mvvm.products.screens.composable
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
-import dev.ebrahim.movies_mvvm.Products.data.remote.model.news.model.ProductItem
+import dev.ebrahim.movies_mvvm.products.data.remote.model.news.model.ProductItem
 
 @Composable
 fun ListProducts(list: List<ProductItem>, navController: NavController) {
