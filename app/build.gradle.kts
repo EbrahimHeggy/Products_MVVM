@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "dev.ebrahim.movies_mvvm"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "dev.ebrahim.movies_mvvm"
@@ -79,5 +79,9 @@ dependencies {
     implementation("androidx.room:room-ktx:2.5.2")
     kapt("androidx.room:room-compiler:2.5.2")
     implementation("androidx.navigation:navigation-compose:2.7.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.0")
+
+    implementation ("io.coil-kt:coil-compose:1.4.0")
+
 
 }
