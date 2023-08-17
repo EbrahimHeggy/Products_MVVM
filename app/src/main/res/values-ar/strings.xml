@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">تطبيق متجر</string>
+    <string name="welcome">مرحبا</string>
+    <string name="browse_all_of_our_products_and_get_what_you_want">تصفح كل منتجاتنا واحصل على ما تريد</string>
+    <string name="create_account">إنشاء حساب</string>
+    <string name="login">تسجيل دخول</string>
+    <string name="successfully_signup">تم التسجيل بنجاح، وارسال رسالة التحقيق</string>
+    <string name="hello">مرحبا بعودتك</string>
+    <string name="register">تسجيل</string>
+    <string name="email">الإيميل</string>
+    <string name="password">الرقم السري</string>
+    <string name="already_have_account"> لديك حساب بالفعل؟ </string>
+    <string name="welcome_to_you">مرحبا بك</string>
+    <string name="welcome_back">أهلا بك من جديد</string>
+    <string name="forgot_password">نسيت الرقم السري؟</string>
+    <string name="don_t_have_an_account"> ليس لديك حساب؟ </string>
+    <string name="reset">إعادة ضبط</string>
+    <string name="reset_your_password">اعد ضبط كلمة السر</string>
+
+</resources>

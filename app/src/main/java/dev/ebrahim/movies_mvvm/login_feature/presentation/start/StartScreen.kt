@@ -16,6 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -42,7 +43,7 @@ fun StartScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(50.dp))
 
         Text(
-            text = "Welcome",
+            text = stringResource(R.string.welcome),
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFFEF5858)
@@ -51,7 +52,7 @@ fun StartScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(15.dp))
 
         Text(
-            text = "Browse all of our products and get what you want",
+            text = stringResource(R.string.browse_all_of_our_products_and_get_what_you_want),
             fontSize = 20.sp
         )
 
@@ -60,15 +61,15 @@ fun StartScreen(navController: NavHostController) {
         Button(onClick = {
             navController.navigate("register")
         }, modifier = Modifier.fillMaxWidth()) {
-            Text(text = "Create Account", fontSize = 20.sp)
+            Text(text = stringResource(R.string.create_account), fontSize = 20.sp)
         }
 
         Spacer(modifier = Modifier.height(10.dp))
 
         OutlinedButton(onClick = {
-                                 navController.navigate("login")
-                                 }, modifier = Modifier.fillMaxWidth()) {
-            Text(text = "Login", fontSize = 20.sp)
+            navController.navigate("login")
+        }, modifier = Modifier.fillMaxWidth()) {
+            Text(text = stringResource(R.string.login), fontSize = 20.sp)
         }
 
     }
