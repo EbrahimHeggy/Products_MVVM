@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "dev.ebrahim.movies_mvvm"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "dev.ebrahim.movies_mvvm"
@@ -81,5 +81,6 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.0")
 
-
+    //coil image
+    implementation("io.coil-kt:coil-compose:2.4.0")
 }
