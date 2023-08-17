@@ -12,8 +12,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,6 +30,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -38,10 +46,11 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
     val registerState by registerViewModel.signUpState.collectAsState()
     val context = LocalContext.current
     if (registerState.isUserSignSuccessfully) {
-        Toast.makeText(context, stringResource(R.string.successfully_signup), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, stringResource(R.string.successfully_signup), Toast.LENGTH_SHORT)
+            .show()
         navController.popBackStack()
         navController.navigate("login")
-        registerViewModel.resetDefaultValue()
+        registerViewModel.resetIsUserSignSuccessfullyToDefaultValue()
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -64,7 +73,11 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = stringResource(R.string.hello), modifier = Modifier.align(Alignment.Start), fontSize = 20.sp)
+                Text(
+                    text = stringResource(R.string.hello),
+                    modifier = Modifier.align(Alignment.Start),
+                    fontSize = 20.sp
+                )
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(
                     text = stringResource(R.string.register),
@@ -92,7 +105,16 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     label = {
                         Text(text = stringResource(R.string.password))
                     },
-                    isError = (registerState.password.length < 8)
+                    isError = (registerState.password.length < 6),
+                    trailingIcon = {
+                        IconButton(onClick = {
+                            registerViewModel.toggleShowPassword()
+                        }) {
+                            Icon(imageVector = Icons.Filled.Lock, contentDescription ="")
+                        }
+                    },
+                    visualTransformation = if (registerState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                 )
                 Spacer(modifier = Modifier.height(30.dp))
                 Button(
@@ -102,7 +124,11 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     modifier = Modifier.fillMaxWidth(),
                     enabled = (registerState.email.isNotBlank() && registerState.password.isNotBlank())
                 ) {
-                    Text(text = stringResource(id = R.string.register), fontSize = 20.sp, modifier = Modifier.padding(4.dp))
+                    Text(
+                        text = stringResource(id = R.string.register),
+                        fontSize = 20.sp,
+                        modifier = Modifier.padding(4.dp)
+                    )
                 }
                 Spacer(modifier = Modifier.height(30.dp))
                 Row {
@@ -122,6 +148,4 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
         }
 
     }
-
-
 }

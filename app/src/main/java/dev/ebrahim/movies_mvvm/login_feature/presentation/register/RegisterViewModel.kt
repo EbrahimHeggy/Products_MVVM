@@ -76,9 +76,15 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-    fun resetDefaultValue(){
+    fun resetIsUserSignSuccessfullyToDefaultValue(){
         _signUpState.update {
             it.copy(isUserSignSuccessfully = false)
+        }
+    }
+
+    fun toggleShowPassword(){
+        _signUpState.update {
+            it.copy(isPasswordVisible = it.isPasswordVisible.not())
         }
     }
 }
@@ -89,7 +95,8 @@ data class SignUpState(
     val errorFlag: String = "",
     val email: String = "",
     val password: String = "",
-    val dialogModel: DialogModel? = null
+    val dialogModel: DialogModel? = null,
+    val isPasswordVisible: Boolean = false
 )
 
 data class DialogModel(

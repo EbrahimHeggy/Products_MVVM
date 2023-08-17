@@ -93,9 +93,15 @@ class LoginViewModel : ViewModel() {
             it.copy(emailInDialog = "")
         }
     }
-    fun resetDefaultValue(){
+    fun resetIsUserLoginSuccessfullyToDefaultValue(){
         _loginState.update {
             it.copy(isUserLoginSuccessfully = false)
+        }
+    }
+
+    fun toggleShowPassword(){
+        _loginState.update {
+            it.copy(isPasswordVisible = it.isPasswordVisible.not())
         }
     }
 }
@@ -107,6 +113,7 @@ data class LoginState(
     val emailInDialog: String = "",
     val password: String = "",
     val dialogModel: DialogModel? = null,
+    val isPasswordVisible: Boolean = false
 )
 
 data class DialogModel(

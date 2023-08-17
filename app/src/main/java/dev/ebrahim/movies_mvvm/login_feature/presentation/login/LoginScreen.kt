@@ -11,10 +11,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,6 +34,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -51,7 +59,7 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
         navController.popBackStack("start", false)
         navController.popBackStack()
         navController.navigate("main")
-        loginViewModel.resetDefaultValue()
+        loginViewModel.resetIsUserLoginSuccessfullyToDefaultValue()
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -109,7 +117,16 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                     modifier = Modifier.fillMaxWidth(),
                     label = {
                         Text(text = stringResource(id = R.string.password))
-                    }
+                    },
+                    trailingIcon = {
+                        IconButton(onClick = {
+                            loginViewModel.toggleShowPassword()
+                        }) {
+                            Icon(imageVector = Icons.Filled.Lock, contentDescription ="")
+                        }
+                    },
+                    visualTransformation = if (loginState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                 )
                 Spacer(modifier = Modifier.height(10.dp))
                 Text(text = stringResource(R.string.forgot_password), color = Color.Blue, modifier = Modifier
