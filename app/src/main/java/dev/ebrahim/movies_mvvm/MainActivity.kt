@@ -11,9 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import dev.ebrahim.movies_mvvm.screens.details.DetailsScreen
-import dev.ebrahim.movies_mvvm.screens.home.ListScreen
-import dev.ebrahim.movies_mvvm.screens.home.ListViewModel
+import dev.ebrahim.movies_mvvm.Products.screens.details.DetailsScreen
+import dev.ebrahim.movies_mvvm.Products.screens.home.ListScreen
+import dev.ebrahim.movies_mvvm.Products.screens.home.ListViewModel
 import dev.ebrahim.movies_mvvm.ui.theme.Movies_MVVMTheme
 
 class MainActivity : ComponentActivity() {
@@ -32,7 +32,6 @@ class MainActivity : ComponentActivity() {
                             ListScreen(viewModel = listViewModel, navController)
                         }
                         composable("Details") {
-
                             DetailsScreen(navController)
                         }
                     }
