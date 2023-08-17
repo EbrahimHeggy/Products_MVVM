@@ -10,6 +10,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.compose.rememberNavController
 import dev.ebrahim.movies_mvvm.details.peresntation.DetailViewModel
 import dev.ebrahim.movies_mvvm.details.peresntation.DetailsScreen
 import dev.ebrahim.movies_mvvm.ui.theme.Movies_MVVMTheme
@@ -20,13 +22,18 @@ class MainActivity : ComponentActivity() {
         setContent {
             Movies_MVVMTheme {
                 // A surface container using the 'background' color from the theme
+                val context = LocalContext.current
+                val navController = rememberNavController()
                 val detailsModel: DetailViewModel by viewModels()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
 
-                    DetailsScreen(detailsModel, 2)
+                    DetailsScreen(viewModel = detailsModel,
+                        id =2 ,
+                        navController = navController ,
+                        context = context)
                 }
             }
         }
