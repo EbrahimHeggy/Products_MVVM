@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberImagePainter
-import dev.ebrahim.movies_mvvm.data.reomte.model.news.model.ProductItem
+import dev.ebrahim.movies_mvvm.data.remote.model.news.model.ProductItem
 
 @Composable
 fun ListProducts(list: List<ProductItem>,navController: NavController) {

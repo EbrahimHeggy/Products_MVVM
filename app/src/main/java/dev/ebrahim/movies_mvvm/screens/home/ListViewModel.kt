@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.ebrahim.movies_mvvm.data.ProductRepository
-import dev.ebrahim.movies_mvvm.data.reomte.model.news.model.ProductItem
+import dev.ebrahim.movies_mvvm.data.remote.model.news.model.ProductItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

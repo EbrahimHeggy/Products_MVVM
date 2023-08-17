@@ -1,8 +1,8 @@
 package dev.ebrahim.movies_mvvm.data
 
-import dev.ebrahim.movies_mvvm.data.reomte.RetrofitClient
-import dev.ebrahim.movies_mvvm.data.reomte.api.ProductsApi
-import dev.ebrahim.movies_mvvm.data.reomte.model.news.model.ProductItem
+import dev.ebrahim.movies_mvvm.data.remote.RetrofitClient
+import dev.ebrahim.movies_mvvm.data.remote.api.ProductsApi
+import dev.ebrahim.movies_mvvm.data.remote.model.news.model.ProductItem
 
 class ProductRepository(
     private val api: ProductsApi = RetrofitClient().productsApi,
