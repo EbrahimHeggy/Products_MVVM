@@ -13,7 +13,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -106,6 +109,12 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                     value = loginState.email,
                     onValueChange = { loginViewModel.setEmail(it) },
                     modifier = Modifier.fillMaxWidth(),
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Filled.Email,
+                            contentDescription = "email icon"
+                        )
+                    },
                     label = {
                         Text(text = stringResource(id = R.string.email))
                     }
@@ -118,11 +127,20 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                     label = {
                         Text(text = stringResource(id = R.string.password))
                     },
+                    leadingIcon = { Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = "password icon"
+                    )},
                     trailingIcon = {
+                        val icon = if(loginState.isPasswordVisible){
+                            Icons.Default.Visibility
+                        } else{
+                            Icons.Default.VisibilityOff
+                        }
                         IconButton(onClick = {
                             loginViewModel.toggleShowPassword()
                         }) {
-                            Icon(imageVector = Icons.Filled.Lock, contentDescription ="")
+                            Icon(imageVector = icon, contentDescription ="visibility icon")
                         }
                     },
                     visualTransformation = if (loginState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
@@ -162,7 +180,6 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
 
         }
     }
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

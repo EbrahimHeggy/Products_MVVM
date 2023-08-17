@@ -14,11 +14,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -91,6 +95,12 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                 OutlinedTextField(
                     value = registerState.email,
                     onValueChange = { registerViewModel.setEmail(it) },
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Filled.Email,
+                            contentDescription = "email icon"
+                        )
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     label = {
                         Text(text = stringResource(R.string.email))
@@ -106,11 +116,21 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                         Text(text = stringResource(R.string.password))
                     },
                     isError = (registerState.password.length < 6),
+                    leadingIcon = { Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = "password icon"
+                    )},
                     trailingIcon = {
+                        val icon = if(registerState.isPasswordVisible){
+                            Icons.Default.Visibility
+                        } else{
+                            Icons.Default.VisibilityOff
+                        }
                         IconButton(onClick = {
                             registerViewModel.toggleShowPassword()
                         }) {
-                            Icon(imageVector = Icons.Filled.Lock, contentDescription ="")
+                            Icon(imageVector = icon, contentDescription = "visibility icon")
+
                         }
                     },
                     visualTransformation = if (registerState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
