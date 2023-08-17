@@ -8,9 +8,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import dev.ebrahim.movies_mvvm.Products.screens.details.DetailsScreen
 import dev.ebrahim.movies_mvvm.Products.screens.home.ListScreen
 import dev.ebrahim.movies_mvvm.Products.screens.home.ListViewModel
@@ -31,8 +33,13 @@ class MainActivity : ComponentActivity() {
                             val listViewModel: ListViewModel by viewModels()
                             ListScreen(viewModel = listViewModel, navController)
                         }
-                        composable("Details") {
-                            DetailsScreen(navController)
+
+                        composable(
+                            route = "Details/{productId}",
+                            arguments = listOf(navArgument("productId") { type = NavType.IntType })
+                        ) { backStackEntry ->
+                            val productId = backStackEntry.arguments?.getInt("productId") ?: -1
+                            DetailsScreen(navController, productId)
                         }
                     }
                 }

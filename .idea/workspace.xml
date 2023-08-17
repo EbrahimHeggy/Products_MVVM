@@ -9,19 +9,20 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec2dee30-708e-4db6-9a86-5493fb9cf982" name="Changes" comment="Before Data Bug">
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+    <list default="true" id="ec2dee30-708e-4db6-9a86-5493fb9cf982" name="Changes" comment="After Data Bug &amp; Packaging">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/data/ProductRepo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/data/remote/RetrofitClient.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/data/remote/api/ProductsApi.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/data/remote/model/news/model/ProductItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/data/remote/model/news/model/ProductStore.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/screens/composable/ErrorDialog.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/screens/composable/ListProducts.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/screens/composable/LoadingScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/screens/details/DetailsScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/screens/home/ListScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/screens/home/ListViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/data/ProductRepo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/data/ProductRepo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/data/remote/RetrofitClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/data/remote/RetrofitClient.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/data/remote/api/ProductsApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/data/remote/api/ProductsApi.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/screens/home/ListScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/screens/home/ListScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/screens/home/ListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/screens/home/ListViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +223,21 @@
       <option name="project" value="LOCAL" />
       <updated>1692251573039</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="After Data Bug &amp; Packaging">
+      <created>1692267188145</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1692267188156</updated>
+    </task>
+    <task id="LOCAL-00009" summary="After Data Bug &amp; Packaging">
+      <created>1692267211188</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1692267211188</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -252,15 +267,16 @@
     <MESSAGE value="initial commit" />
     <MESSAGE value="Dependencies" />
     <MESSAGE value="Before Data Bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="Before Data Bug" />
+    <MESSAGE value="After Data Bug &amp; Packaging" />
+    <option name="LAST_COMMIT_MESSAGE" value="After Data Bug &amp; Packaging" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-function">
-          <url>file://$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/data/remote/api/ProductsApi.kt</url>
+          <url>file://$PROJECT_DIR$/app/src/main/java/dev/ebrahim/movies_mvvm/Products/data/remote/api/ProductsApi.kt</url>
           <line>11</line>
-          <properties class="dev.ebrahim.movies_mvvm.data.remote.api.ProductsApi" method="getProducts">
+          <properties class="dev.ebrahim.movies_mvvm.Products.data.remote.api.ProductsApi" method="getProducts">
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="3" />
