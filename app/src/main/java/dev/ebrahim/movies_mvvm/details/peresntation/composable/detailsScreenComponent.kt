@@ -4,24 +4,25 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material.icons.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -40,26 +41,27 @@ fun DetailsScreenComponent(
     Scaffold(
         topBar = {
 
-            TopAppBar(title = {
-                Text(text = "category : ${product?.category.toString()}")
-            },
-                navigationIcon = {
-                    IconButton(onClick = { onBackClicked }) {
-                        Icon(
-                            imageVector = Icons.Filled.ArrowBack,
-                            contentDescription = "back to home screen"
-                        )
-                    }
-                })
+            CustomTopAppBar(
+                title = product?.category.toString(),
+                onIconClicked = { onBackClicked() },
+                icon = Icons.Outlined.ArrowBack
+            )
 
         },
         floatingActionButton = {
-            Button(
-                onClick = { onAddToCartClicked() }, modifier = Modifier
+            IconButton(
+                onClick = { onAddToCartClicked() },
+                modifier = Modifier
                     .padding(bottom = 20.dp)
-                    .fillMaxWidth(), colors = ButtonDefaults.buttonColors(Color.LightGray)
+                    .clip(CircleShape),
+                colors = IconButtonDefaults.iconButtonColors(Color.Blue)
+
             ) {
-                Text(text = "Add to card")
+                Icon(
+                    imageVector = Icons.Outlined.ShoppingCart,
+                    contentDescription = "Shopping cart",
+                    tint = Color.White
+                )
 
             }
 
@@ -72,21 +74,24 @@ fun DetailsScreenComponent(
                 .padding(it)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
 
-            ) {
+        ) {
 
             CoilImage(imageUrl = product?.image.toString())
 
             Text(
                 text = "${product?.price.toString()} $",
-                modifier = Modifier.padding(15.dp)
+                modifier = Modifier.padding(15.dp),
+                fontSize = 15.sp
             )
 
             Text(
-                text = product?.title.toString(), fontWeight = FontWeight.W700,
+                text = product?.title.toString(), fontWeight = FontWeight.W800,
                 style = TextStyle(color = Color.Blue),
-                fontSize = 25.sp,
-            )
+                fontSize = 30.sp,
+            modifier = Modifier.width(300.dp)
+                )
 
             Spacer(modifier = Modifier.height(20.dp))
             Text(text = product?.description.toString())

@@ -11,8 +11,8 @@ class ProductRepo (
 ) {
 
 
-    suspend fun getSpecificProduct(id:Int) : Product {
-        return productApi.getProduct(id)
+    suspend fun getSpecificProductWithId(productId:Int) : Product {
+        return productApi.getProduct(productId)
     }
 
 }

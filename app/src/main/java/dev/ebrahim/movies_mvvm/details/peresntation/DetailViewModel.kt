@@ -22,7 +22,7 @@ class DetailViewModel : ViewModel() {
      fun getProductWithId(id: Int) {
         viewModelScope.launch {
             kotlin.runCatching {
-                val product = productRepo.getSpecificProduct(id)
+                val product = productRepo.getSpecificProductWithId(id)
                 _status.update {
                     it.copy(product = product)
                 }
