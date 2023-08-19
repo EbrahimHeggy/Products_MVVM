@@ -18,5 +18,7 @@
     <string name="reset">إعادة ضبط</string>
     <string name="reset_your_password">اعد ضبط كلمة السر</string>
     <string name="loading">جاري التحميل..</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="error">خطأ</string>
 
 </resources>

@@ -10,7 +10,6 @@ class LoginViewModel : ViewModel() {
     private val repository = Repository()
     private val _loginState = MutableStateFlow(LoginState())
     val loginState = _loginState.asStateFlow()
-
     fun setEmail(value: String) {
         _loginState.update {
             it.copy(email = value)
@@ -48,7 +47,7 @@ class LoginViewModel : ViewModel() {
                         isUserLoginSuccessfully = false,
                         dialogModel = DialogModel(
                             isShouldShow = true,
-                            message = authResult.exception.toString()
+                            message = authResult.exception?.message.toString()
                         )
                     )
                 }
@@ -57,23 +56,24 @@ class LoginViewModel : ViewModel() {
 
     fun resetPassword() {
         _loginState.update { it.copy(isLoading = true) }
-        repository.resetPassword(loginState.value.emailInDialog).addOnCompleteListener {
-            if (it.isSuccessful) {
-                _loginState.update { loginState1 ->
-                    loginState1.copy(isLoading = false)
+        repository.resetPassword(loginState.value.emailInDialog)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    _loginState.update { loginState1 ->
+                        loginState1.copy(isLoading = false)
+                    }
+                    return@addOnCompleteListener
                 }
-                return@addOnCompleteListener
-            }
-            _loginState.update { loginState ->
-                loginState.copy(
-                    isLoading = false,
-                    dialogModel = DialogModel(
-                        isShouldShow = true,
-                        message = it.exception.toString()
+                _loginState.update { loginState ->
+                    loginState.copy(
+                        isLoading = false,
+                        dialogModel = DialogModel(
+                            isShouldShow = true,
+                            message = it.exception?.message.toString()
+                        )
                     )
-                )
+                }
             }
-        }
     }
 
     fun dismissDialog() {
@@ -93,13 +93,14 @@ class LoginViewModel : ViewModel() {
             it.copy(emailInDialog = "")
         }
     }
-    fun resetIsUserLoginSuccessfullyToDefaultValue(){
+
+    fun resetIsUserLoginSuccessfullyToDefaultValue() {
         _loginState.update {
             it.copy(isUserLoginSuccessfully = false)
         }
     }
 
-    fun toggleShowPassword(){
+    fun toggleShowPassword() {
         _loginState.update {
             it.copy(isPasswordVisible = it.isPasswordVisible.not())
         }

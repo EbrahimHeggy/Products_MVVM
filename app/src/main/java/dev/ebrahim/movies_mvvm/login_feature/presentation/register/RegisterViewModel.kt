@@ -9,30 +9,18 @@ import kotlinx.coroutines.flow.update
 class RegisterViewModel : ViewModel() {
     private val repository = Repository()
 
-
     private val _signUpState = MutableStateFlow(SignUpState())
     val signUpState = _signUpState.asStateFlow()
-
-
-    //    private val _emailState = mutableStateOf("")
-//    val emailState: State<String> = _emailState
     fun setEmail(value: String) {
-//        _emailState.value = value
         _signUpState.update {
             it.copy(email = value)
         }
     }
-
-    //    private val _passwordState = mutableStateOf("")
-//    val passwordState: State<String> = _passwordState
     fun setPassword(value: String) {
-//        _passwordState.value = value
-
         _signUpState.update {
             it.copy(password = value)
         }
     }
-
 
     fun register() {
         _signUpState.update { it.copy(isLoading = true) }
@@ -49,10 +37,9 @@ class RegisterViewModel : ViewModel() {
                     state.copy(
                         isLoading = false,
                         isUserSignSuccessfully = false,
-                        errorFlag = authResult.exception.toString(),
                         dialogModel = DialogModel(
                             isShouldShow = true,
-                            message = authResult.exception.toString()
+                            message = authResult.exception?.message.toString()
                         )
                     )
                 }
@@ -92,7 +79,6 @@ class RegisterViewModel : ViewModel() {
 data class SignUpState(
     val isLoading: Boolean = false,
     val isUserSignSuccessfully: Boolean = false,
-    val errorFlag: String = "",
     val email: String = "",
     val password: String = "",
     val dialogModel: DialogModel? = null,

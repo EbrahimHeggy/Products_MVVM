@@ -4,7 +4,9 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import dev.ebrahim.movies_mvvm.R
 
 @Composable
 fun ErrorDialog(
@@ -18,10 +20,10 @@ fun ErrorDialog(
         onDismissRequest = { onDismiss() },
         confirmButton = {
             Button(onClick = { onConfirm() }) {
-                Text(text = "Retry")
+                Text(text = stringResource(R.string.retry))
             }
         },
-        title = { Text(text = "Error", fontSize = 20.sp) },
+        title = { Text(text = stringResource(R.string.error), fontSize = 20.sp) },
         text = { Text(text = message) }
     )
 }
