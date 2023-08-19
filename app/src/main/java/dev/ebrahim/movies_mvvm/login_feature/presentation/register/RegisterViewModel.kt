@@ -70,7 +70,7 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-    fun clearTextField(){
+    fun clearEmailAndPasswordTextField(){
         _signUpState.update {
             it.copy(email = "", password = "")
         }

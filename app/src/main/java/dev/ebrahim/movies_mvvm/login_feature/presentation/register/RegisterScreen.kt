@@ -22,7 +22,6 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.IconToggleButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -63,7 +62,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
             message = registerState.dialogModel?.message ?: "",
             onDismiss = { registerViewModel.dismissDialog() }) {
             registerViewModel.dismissDialog()
-            registerViewModel.clearTextField()
+            registerViewModel.clearEmailAndPasswordTextField()
         }
         Box(modifier = Modifier.fillMaxSize()) {
             LoadingScreen(isLoading = registerState.isLoading)

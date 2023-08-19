@@ -82,7 +82,7 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun clearTextField() {
+    fun clearEmailAndPasswordTextField() {
         _loginState.update {
             it.copy(email = "", password = "")
         }
