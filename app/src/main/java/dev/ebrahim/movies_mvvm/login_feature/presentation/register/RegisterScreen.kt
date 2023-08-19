@@ -23,6 +23,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -49,8 +50,11 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
     val registerState by registerViewModel.signUpState.collectAsState()
     val context = LocalContext.current
     if (registerState.isUserSignSuccessfully) {
-        Toast.makeText(context, stringResource(R.string.successfully_signup), Toast.LENGTH_SHORT)
-            .show()
+        Toast.makeText(
+            context,
+            stringResource(R.string.successfully_signup),
+            Toast.LENGTH_SHORT
+        ).show()
         navController.popBackStack()
         navController.navigate("login")
         registerViewModel.resetIsUserSignSuccessfullyToDefaultValue()
@@ -66,102 +70,120 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
         }
         Box(modifier = Modifier.fillMaxSize()) {
             LoadingScreen(isLoading = registerState.isLoading)
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(32.dp),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    text = stringResource(R.string.hello),
-                    modifier = Modifier.align(Alignment.Start),
-                    fontSize = 20.sp
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                Text(
-                    text = stringResource(R.string.register),
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier.align(Alignment.Start),
-                    fontSize = 30.sp
-                )
 
-                Spacer(modifier = Modifier.height(100.dp))
-
-                OutlinedTextField(
-                    value = registerState.email,
-                    onValueChange = { registerViewModel.setEmail(it) },
-                    leadingIcon = {
-                        Icon(
-                            imageVector = Icons.Filled.Email,
-                            contentDescription = "email icon"
+            Scaffold(
+                topBar = {
+                    Column(
+                        Modifier.padding(18.dp),
+                        verticalArrangement = Arrangement.Top
+                    ) {
+                        Text(
+                            text = stringResource(R.string.register),
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.align(Alignment.Start),
+                            fontSize = 30.sp
                         )
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                    label = {
-                        Text(text = stringResource(R.string.email))
-                    },
-                    isError = Patterns.EMAIL_ADDRESS.matcher(registerState.email).matches().not()
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                OutlinedTextField(
-                    value = registerState.password,
-                    onValueChange = { registerViewModel.setPassword(it) },
-                    modifier = Modifier.fillMaxWidth(),
-                    label = {
-                        Text(text = stringResource(R.string.password))
-                    },
-                    isError = (registerState.password.length < 6),
-                    leadingIcon = { Icon(
-                        imageVector = Icons.Filled.Lock,
-                        contentDescription = "password icon"
-                    )},
-                    trailingIcon = {
-                        val icon = if(registerState.isPasswordVisible){
-                            Icons.Default.Visibility
-                        } else{
-                            Icons.Default.VisibilityOff
-                        }
-                        IconButton(onClick = {
-                            registerViewModel.toggleShowPassword()
-                        }) {
-                            Icon(imageVector = icon, contentDescription = "visibility icon")
-
-                        }
-                    },
-                    visualTransformation = if (registerState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
-                )
-                Spacer(modifier = Modifier.height(30.dp))
-                Button(
-                    onClick = {
-                        registerViewModel.register()
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                    enabled = (registerState.email.isNotBlank() && registerState.password.isNotBlank())
+                        Spacer(modifier = Modifier.height(10.dp))
+                        Text(
+                            text = stringResource(R.string.hello),
+                            modifier = Modifier.align(Alignment.Start),
+                            fontSize = 25.sp
+                        )
+                    }
+                }
+            ) { paddingValue ->
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(paddingValue)
+                        .padding(horizontal = 32.dp),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(
-                        text = stringResource(id = R.string.register),
-                        fontSize = 20.sp,
-                        modifier = Modifier.padding(4.dp)
+                    OutlinedTextField(
+                        value = registerState.email,
+                        onValueChange = { newValue -> registerViewModel.setEmail(newValue) },
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Filled.Email,
+                                contentDescription = "email icon"
+                            )
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = {
+                            Text(text = stringResource(R.string.email))
+                        },
+                        isError = (registerState.email.isNotBlank() && Patterns.EMAIL_ADDRESS.matcher(
+                            registerState.email
+                        ).matches()
+                            .not())
                     )
-                }
-                Spacer(modifier = Modifier.height(30.dp))
-                Row {
-                    Text(text = stringResource(R.string.already_have_account), fontSize = 20.sp)
-                    Text(
-                        text = stringResource(id = R.string.login),
-                        fontSize = 20.sp,
-                        color = Color(0xFFEF5858),
-                        modifier = Modifier.clickable {
-                            navController.popBackStack()
-                            navController.navigate("login")
-                        }
+                    Spacer(modifier = Modifier.height(15.dp))
+                    OutlinedTextField(
+                        value = registerState.password,
+                        onValueChange = { newValue -> registerViewModel.setPassword(newValue) },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = {
+                            Text(text = stringResource(R.string.password))
+                        },
+                        isError = (registerState.password.isNotBlank() && registerState.password.length < 6),
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Filled.Lock,
+                                contentDescription = "password icon"
+                            )
+                        },
+                        trailingIcon = {
+                            val icon = if (registerState.isPasswordVisible) {
+                                Icons.Default.Visibility
+                            } else {
+                                Icons.Default.VisibilityOff
+                            }
+                            IconButton(onClick = {
+                                registerViewModel.toggleShowPassword()
+                            }) {
+                                Icon(imageVector = icon, contentDescription = "visibility icon")
+                            }
+                        },
+                        visualTransformation =
+                        if (registerState.isPasswordVisible)
+                            VisualTransformation.None
+                        else
+                            PasswordVisualTransformation(),
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                     )
+                    Spacer(modifier = Modifier.height(35.dp))
+                    Button(
+                        onClick = {
+                            registerViewModel.register()
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        enabled = (registerState.email.isNotBlank() && registerState.password.isNotBlank())
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.register),
+                            fontSize = 20.sp,
+                            modifier = Modifier.padding(4.dp)
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(50.dp))
+                    Row {
+                        Text(
+                            text = stringResource(R.string.already_have_account),
+                            fontSize = 20.sp
+                        )
+                        Text(
+                            text = stringResource(id = R.string.login),
+                            fontSize = 20.sp,
+                            color = Color(0xFFEF5858),
+                            modifier = Modifier.clickable {
+                                navController.popBackStack()
+                                navController.navigate("login")
+                            }
+                        )
+                    }
                 }
-
             }
         }
-
     }
 }

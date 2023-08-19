@@ -6,7 +6,7 @@
     <string name="create_account">إنشاء حساب</string>
     <string name="login">تسجيل دخول</string>
     <string name="successfully_signup">تم التسجيل بنجاح، وارسال رسالة التحقيق</string>
-    <string name="hello">مرحبا بعودتك</string>
+    <string name="hello">مرحبا بك</string>
     <string name="register">تسجيل</string>
     <string name="email">الإيميل</string>
     <string name="password">الرقم السري</string>
