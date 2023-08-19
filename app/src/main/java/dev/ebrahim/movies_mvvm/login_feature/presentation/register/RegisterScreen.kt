@@ -66,10 +66,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
             registerViewModel.clearTextField()
         }
         Box(modifier = Modifier.fillMaxSize()) {
-            LoadingScreen(
-                isLoading = registerState.isLoading,
-                modifier = Modifier.align(Alignment.Center)
-            )
+            LoadingScreen(isLoading = registerState.isLoading)
             Column(
                 modifier = Modifier
                     .fillMaxSize()

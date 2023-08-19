@@ -1,6 +1,7 @@
 package dev.ebrahim.movies_mvvm.login_feature.presentation.login
 
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
@@ -19,7 +21,6 @@ import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -42,11 +43,11 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavHostController
 import dev.ebrahim.movies_mvvm.R
 import dev.ebrahim.movies_mvvm.login_feature.presentation.composable.ErrorDialog
 import dev.ebrahim.movies_mvvm.login_feature.presentation.composable.LoadingScreen
+import dev.ebrahim.movies_mvvm.login_feature.presentation.composable.ResetPasswordDialog
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -59,8 +60,7 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
     val context = LocalContext.current
     if (loginState.isUserLoginSuccessfully) {
         Toast.makeText(context, stringResource(R.string.welcome_to_you), Toast.LENGTH_SHORT).show()
-        navController.popBackStack("start", false)
-        navController.popBackStack()
+        navController.popBackStack("start", true)
         navController.navigate("main")
         loginViewModel.resetIsUserLoginSuccessfullyToDefaultValue()
     }
@@ -69,20 +69,22 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
         ErrorDialog(
             shouldShow = loginState.dialogModel?.isShouldShow ?: false,
             message = loginState.dialogModel?.message ?: "",
-            onDismiss = { loginViewModel.dismissDialog() }) {
-            loginViewModel.dismissDialog()
-            loginViewModel.clearTextField()
-        }
-        ResetDialog(
+            onDismiss = { loginViewModel.dismissDialog() },
+            onConfirm = {
+                loginViewModel.dismissDialog()
+                loginViewModel.clearTextField()
+            }
+        )
+        ResetPasswordDialog(
             shouldShow = resetDialogShow,
-            loginState = loginState,
-            loginViewModel = loginViewModel,
-            onDismiss = { resetDialogShow = false })
+            emailValue = loginState.emailInDialog,
+            onEmailValueChange = { loginViewModel.setEmailInDialog(it) },
+            resetPassword = { loginViewModel.resetPassword() },
+            clearDialogTextField = { loginViewModel.clearDialogTextField() },
+            onDismiss = { resetDialogShow = false }
+        )
         Box(modifier = Modifier.fillMaxSize()) {
-            LoadingScreen(
-                isLoading = loginState.isLoading,
-                modifier = Modifier.align(Alignment.Center)
-            )
+            LoadingScreen(isLoading = loginState.isLoading)
             Column(
                 modifier = Modifier
                     .fillMaxSize()
@@ -127,31 +129,35 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                     label = {
                         Text(text = stringResource(id = R.string.password))
                     },
-                    leadingIcon = { Icon(
-                        imageVector = Icons.Filled.Lock,
-                        contentDescription = "password icon"
-                    )},
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Filled.Lock,
+                            contentDescription = "password icon"
+                        )
+                    },
                     trailingIcon = {
-                        val icon = if(loginState.isPasswordVisible){
+                        val icon = if (loginState.isPasswordVisible) {
                             Icons.Default.Visibility
-                        } else{
+                        } else {
                             Icons.Default.VisibilityOff
                         }
                         IconButton(onClick = {
                             loginViewModel.toggleShowPassword()
                         }) {
-                            Icon(imageVector = icon, contentDescription ="visibility icon")
+                            Icon(imageVector = icon, contentDescription = "visibility icon")
                         }
                     },
                     visualTransformation = if (loginState.isPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
                 )
                 Spacer(modifier = Modifier.height(10.dp))
-                Text(text = stringResource(R.string.forgot_password), color = Color.Blue, modifier = Modifier
-                    .clickable {
-                        resetDialogShow = true
-                    }
-                    .align(Alignment.End))
+                Text(text = stringResource(R.string.forgot_password),
+                    color = Color.Blue,
+                    modifier = Modifier
+                        .clickable {
+                            resetDialogShow = true
+                        }
+                        .align(Alignment.End))
                 Spacer(modifier = Modifier.height(30.dp))
                 Button(
                     onClick = {
@@ -161,7 +167,11 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                     modifier = Modifier.fillMaxWidth(),
                     enabled = (loginState.email.isNotBlank() && loginState.password.isNotBlank())
                 ) {
-                    Text(text = stringResource(id = R.string.login), fontSize = 20.sp, modifier = Modifier.padding(4.dp))
+                    Text(
+                        text = stringResource(id = R.string.login),
+                        fontSize = 20.sp,
+                        modifier = Modifier.padding(4.dp)
+                    )
                 }
                 Spacer(modifier = Modifier.height(30.dp))
                 Row {
@@ -177,51 +187,6 @@ fun LoginScreen(navController: NavHostController, loginViewModel: LoginViewModel
                     )
                 }
             }
-
         }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ResetDialog(
-    shouldShow: Boolean,
-    loginState: LoginState,
-    loginViewModel: LoginViewModel,
-    onDismiss: () -> Unit
-) {
-    if (!shouldShow) return
-    Dialog(onDismissRequest = { onDismiss() }) {
-        Card(
-            modifier = Modifier
-                .height(250.dp)
-                .fillMaxWidth()
-        ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(text = stringResource(R.string.reset_your_password), fontWeight = FontWeight.Bold)
-                Spacer(modifier = Modifier.height(5.dp))
-                OutlinedTextField(
-                    value = loginState.emailInDialog,
-                    onValueChange = { loginViewModel.setEmailInDialog(it) },
-                    label = { Text(text = stringResource(id = R.string.email)) }
-                )
-                Spacer(modifier = Modifier.height(10.dp))
-                Button(onClick = {
-                    loginViewModel.resetPassword()
-                    loginViewModel.clearDialogTextField()
-                    onDismiss()
-                }) {
-                    Text(text = stringResource(R.string.reset))
-                }
-            }
-
-
-        }
-
-
     }
 }

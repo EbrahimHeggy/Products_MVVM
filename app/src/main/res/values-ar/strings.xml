@@ -17,5 +17,6 @@
     <string name="don_t_have_an_account"> ليس لديك حساب؟ </string>
     <string name="reset">إعادة ضبط</string>
     <string name="reset_your_password">اعد ضبط كلمة السر</string>
+    <string name="loading">جاري التحميل..</string>
 
 </resources>
