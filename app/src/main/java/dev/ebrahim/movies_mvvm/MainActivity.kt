@@ -8,12 +8,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavType
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
-import dev.ebrahim.movies_mvvm.products.screens.details.DetailsScreen
+import dev.ebrahim.movies_mvvm.login_feature.presentation.login.LoginScreen
+import dev.ebrahim.movies_mvvm.login_feature.presentation.login.LoginViewModel
+import dev.ebrahim.movies_mvvm.login_feature.presentation.main.MainScreen
+import dev.ebrahim.movies_mvvm.login_feature.presentation.register.RegisterScreen
+import dev.ebrahim.movies_mvvm.login_feature.presentation.register.RegisterViewModel
+import dev.ebrahim.movies_mvvm.login_feature.presentation.start.StartScreen
+import android
 import dev.ebrahim.movies_mvvm.products.screens.home.ListScreen
 import dev.ebrahim.movies_mvvm.products.screens.home.ListViewModel
 import dev.ebrahim.movies_mvvm.ui.theme.Movies_MVVMTheme
@@ -24,27 +29,24 @@ class MainActivity : ComponentActivity() {
         setContent {
             Movies_MVVMTheme {
                 val navController = rememberNavController()
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    NavHost(navController, startDestination = "home") {
-                        composable("Home") {
-                            val listViewModel: ListViewModel by viewModels()
-                            ListScreen(viewModel = listViewModel, navController)
-                        }
-
-                        composable(
-                            route = "Details/{productId}",
-                            arguments = listOf(navArgument("productId") { type = NavType.IntType })
-                        ) { backStackEntry ->
-                            val productId = backStackEntry.arguments?.getInt("productId") ?: -1
-                            DetailsScreen(navController, productId)
-                        }
+                NavHost(navController = navController, startDestination = "start"){
+                    composable("start"){
+                        StartScreen(navController)
+                    }
+                    composable("register"){
+                        val registerViewModel: RegisterViewModel by viewModels()
+                        RegisterScreen(navController, registerViewModel)
+                    }
+                    composable("login"){
+                        val loginViewModel: LoginViewModel by viewModels()
+                        LoginScreen(navController, loginViewModel)
+                    }
+                    composable("Home") {
+                        val listViewModel: ListViewModel by viewModels()
+                        ListScreen(viewModel = listViewModel, navController)
                     }
                 }
             }
         }
     }
 }
-
