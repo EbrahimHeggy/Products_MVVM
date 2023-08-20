@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Movies_MVVM</string>
+    <string name="app_name">Store App</string>
+    <string name="welcome">Welcome</string>
+    <string name="browse_all_of_our_products_and_get_what_you_want">Browse all of our products and get what you want</string>
+    <string name="create_account">Create Account</string>
+    <string name="login">Login</string>
+    <string name="successfully_signup">Successfully SignUp, Verification email has been sent</string>
+    <string name="hello">Hello</string>
+    <string name="register">Register</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="already_have_account">"Already have account? "</string>
+    <string name="welcome_to_you">Welcome to you</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="don_t_have_an_account">"Don't have an account? "</string>
+    <string name="reset">Reset</string>
+    <string name="reset_your_password">Reset your password</string>
+    <string name="loading">Loading..</string>
+    <string name="retry">Retry</string>
+    <string name="error">Error</string>
 </resources>
