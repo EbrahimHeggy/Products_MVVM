@@ -39,7 +39,7 @@ fun ListProducts(list: List<ProductItem>, navController: NavController) {
                     .height(250.dp)
                     .padding(10.dp)
                     .clickable {
-                        navController.navigate("Details/${it.id}")
+                        // TODO For Navigation
 
                     }
                 ){
